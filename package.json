@@ -1,0 +1,30 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "basic todo list using node.js",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtarifi/todo-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtarifi/todo-list/issues"
+  },
+  "homepage": "https://github.com/rtarifi/todo-list#readme",
+  "dependencies": {
+    "async": "^3.1.0",
+    "crypto": "^1.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "nano": "^8.1.0",
+    "restify": "^8.4.0",
+    "restify-errors": "^8.0.1"
+  }
+}

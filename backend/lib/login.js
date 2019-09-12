@@ -43,9 +43,9 @@ module.exports = (req, res, next) => {
    }
 
    const doc = result.getProfileDoc
-   if (!doc.loginViaUsername ||!doc.loginViaUsername.salt || !doc.loginViaUsername.key) return cb(new errors.GoneError('profile error'))
+   if (!doc.login ||!doc.login.salt || !doc.login.key) return cb(new errors.GoneError('profile error'))
 
-   const salt = doc.loginViaUsername.salt
+   const salt = doc.login.salt
    const iterations = 10
    const keylen = 12
    const digest = 'sha512'
@@ -54,7 +54,7 @@ module.exports = (req, res, next) => {
     if (err) return next(new errors.InvalidCredentialsError('invalid password'))
 
     const inputPassword = derivedKey.toString('hex')
-    const savedPassword = doc.loginViaUsername.key
+    const savedPassword = doc.login.key
     const payload = { id: doc._id }
 
     if (savedPassword !== inputPassword) return cb(new errors.InvalidCredentialsError('invalid password'))

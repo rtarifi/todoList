@@ -14,7 +14,12 @@ module.exports.list = (req, res, next) => {
   endkey: [profileId],
   descending: true,
   include_docs: true
- }).on('error', next).on('end', next).pipe(res)
+ }, (err, body) => {
+  if (err) return next(new errors.InternalError('internal error'))
+
+  res.send(body)
+  next()
+ })
 }
 
 module.exports.get = (req, res, next) => {

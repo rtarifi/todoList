@@ -1,3 +1,9 @@
 <div>
   <h1>Login Page</h1>
+
+	<input type="text" placeholder="username" (keyup)="onUsernameInput($event)">
+	<input type="password" placeholder="password" (keyup)="onPasswordInput($event)">
+	<button (click)="onLoginClick()">login</button>
+
+
 </div>

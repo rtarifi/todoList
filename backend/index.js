@@ -1,6 +1,18 @@
 const restify = require('restify')
+const corsMiddleware = require('restify-cors-middleware')
 
 const server = restify.createServer()
+
+const cors = corsMiddleware({
+ preflightMaxAge: 300,
+ origins: ['*'],
+ allowHeaders: [
+  'x-todo-token'
+ ]
+})
+
+server.pre(cors.preflight)
+server.use(cors.actual)
 
 server.use(restify.plugins.bodyParser({ mapParams: true }))
 server.use(restify.plugins.queryParser({ mapParams: true }))

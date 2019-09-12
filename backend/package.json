@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rtarifi/todo-list#readme",
   "dependencies": {
+    "@angular/cli": "^8.3.4",
     "async": "^3.1.0",
     "crypto": "^1.0.1",
     "jsonwebtoken": "^8.5.1",

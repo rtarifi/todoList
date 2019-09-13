@@ -1,0 +1,9 @@
+{
+ "_id": "_design/profile",
+ "language": "javascript",
+ "views": {
+  "by_username": {
+   "map": "function(doc) {\n\tif (doc.type === \"profile\") {\n  \t\temit(doc.username, null);\n\t}\n}"
+  }
+ }
+}

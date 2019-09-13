@@ -1,0 +1,11 @@
+{
+ "_id": "f1db34024d67ce147259264c6600196f",
+ "type": "task",
+ "title": "buy a wallet",
+ "completed": true,
+ "profileId": "2bf60c52f8c3d11b8b9fcbe21d0010ec",
+ "time": {
+  "created": "2019-09-10T12:48:08.682Z",
+  "modified": "2019-09-10T12:48:08.682Z"
+ }
+}

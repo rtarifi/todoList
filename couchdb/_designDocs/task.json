@@ -1,0 +1,9 @@
+{
+ "_id": "_design/task",
+ "language": "javascript",
+ "views": {
+  "by_modified_time": {
+   "map": "function(doc) {\n\tif (doc.type === \"task\" && doc.time) {\n  \t\temit([doc.profileId, doc.time.modified], null);\n\t}\n}"
+  }
+ }
+}

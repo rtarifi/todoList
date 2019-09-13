@@ -1,0 +1,9 @@
+{
+ "_id": "2bf60c52f8c3d11b8b9fcbe21d0010ec",
+ "type": "profile",
+ "username": "rtarifi",
+ "login": {
+  "key": "89c0bc8b9477a4ec46493b7d",
+  "salt": "d095c8c9a61f06f5ebbe40a4"
+ }
+}

@@ -1,3 +1,68 @@
 <div>
   <h1>TO DO LIST</h1>
+  <table
+  	class="my-list">
+  	<tr>
+  		<th>#</th>
+  		<th>Task</th>
+  		<th>Completed</th>
+  		<th>Edit</th>
+  		<th>Delete</th>
+  	</tr>
+  	<tr
+  		*ngFor="let item of data; let i = index"
+  		[ngStyle]="{
+  			backgroundColor: i === taskEditingIndex ? 'lavender' : 'transparent'
+  		}">
+
+  		<td>{{i + 1}}.</td>
+
+	  	<div *ngIf="i === taskEditingIndex; then titleThenBlock else titleElseBlock"></div>
+	  	<ng-template #titleThenBlock>
+	  		<input [placeholder]="item.doc.title" (keyup)="onEditTitleInput($event)">
+	  	</ng-template>
+	  	<ng-template #titleElseBlock>
+	  		<td>{{item.doc.title}}</td>
+	  	</ng-template>
+
+	  	<div *ngIf="i === taskEditingIndex; then completedThenBlock else completedElseBlock"></div>
+	  	<ng-template #completedThenBlock>
+	  		<td>
+		  		<input
+		  			type="radio"
+		  			name="completed"
+		  			value="true"
+		  			[checked]="item.doc.completed">Done
+		  		<input
+		  			type="radio"
+		  			name="completed"
+		  			value="false"
+		  			[checked]="!item.doc.completed">Not Done
+		  	</td>
+	  	</ng-template>
+	  	<ng-template #completedElseBlock>
+	  		<td>{{item.doc.completed}}</td>
+	  	</ng-template>
+
+	  	<div *ngIf="i === taskEditingIndex; then iconThenBlock else iconElseBlock"></div>
+	  	<ng-template #iconThenBlock>
+	  		<td
+	  			style="cursor: pointer; color: green"
+	  			(click)="saveClicked()">Save</td>
+	  	</ng-template>
+	  	<ng-template #iconElseBlock>
+	  		<td
+		  		class="material-icons icon-btn"
+		  		style="color: navy"
+		  		(click)="editClicked(i)">edit</td>
+	  	</ng-template>
+
+	  	<td class="material-icons icon-btn" style="color: red" (click)="deleteClicked(i)">delete</td>
+  	</tr>
+  </table>
+
+  <div style="margin-top: 1rem">
+	  <input type="text" placeholder="New task" (keyup)="onNewTaskInput($event)">
+	  <button (click)="addClicked()" style="cursor: pointer">Add</button>
+  </div>
 </div>

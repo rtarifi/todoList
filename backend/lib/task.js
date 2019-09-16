@@ -9,7 +9,7 @@ module.exports.list = (req, res, next) => {
 
  const profileId = req.auth.id
 
- db.view('task', 'by_modified_time', {
+ db.view('task', 'by_created_time', {
   startkey: [profileId, {}],
   endkey: [profileId],
   descending: true,
@@ -63,7 +63,7 @@ module.exports.create = (req, res, next) => {
   if (!result || !result.id) return next(new errors.InternalError('did not create task'))
 
   data._id = result.id
-  res.send(data)
+  res.send({ success: true, doc: data })
   next()
  })
 }
@@ -89,7 +89,7 @@ module.exports.update = (req, res, next) => {
    db.insert(doc, (err, result) => {
     if (err) return next(err)
 
-    res.send(doc)
+    res.send({ success: true, doc})
     next()
    })
  })
@@ -101,13 +101,13 @@ module.exports.delete = (req, res, next) => {
  const {id} = req.params
 
  db.get(id, (err, doc) => {
-  if (err) next(err)
+  if (err) return next(err)
 
-  if (profileId !== doc.profileId) return next(new errors.UnauthorizedError('unauthorized request'))
+  if (req.auth.id !== doc.profileId) return next(new errors.UnauthorizedError('unauthorized request'))
 
   doc._deleted = true
   db.insert(doc, (err, insert) => {
-   if (err) next(err)
+   if (err) return next(err)
 
    res.send({success: true})
    next()
